@@ -19,7 +19,7 @@ var bfs = async function (node, goal) {
   q.push(node);
   while (q.length > 0) {
     node = q.shift();
-    
+
     if (node == goal) {
       return node;
     }
@@ -38,20 +38,20 @@ var bfs = async function (node, goal) {
 var dfs = async function (node, goal) {
   node.visited = true;
   console.log(node.name);
-    if (node == goal) {
-      return node;
+  if (node == goal) {
+    return node;
+  }
+  if (node.children) {
+    for (var i = 0; i < node.children.length; i++) {
+      var childNode = node.children[i];
+      dfs(childNode, goal);
     }
-    if (node.children) {
-      for (var i = 0; i < node.children.length; i++) {
-        var childNode = node.children[i];
-        dfs(childNode, goal);
-      }
-    }
+  }
 }
 
 var dfs2 = async function (node, goal) {
   let stack = [node];
-  while (stack.length) {      
+  while (stack.length) {
     let curr = stack.pop();
     console.log(curr.name);
     if (curr.children) {
